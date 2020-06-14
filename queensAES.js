@@ -68,25 +68,23 @@ function executeAttacks(board) {
           d1col++
         }
 
-        // have to do diagonal the otehr direction 
-        // incrementer is -1 for qrow > qcol 
-        let inc = -1 
-        if (qrow > qcol) { 
-          // console.log('row > col')
-          d1row = qrow - qcol 
-          d1col = N - 1
-        } else {
-          // console.log('row <= col')
+        // have to do diagonal the other direction 
+
+        if (N - 1 - qrow >= qcol) { 
+          console.log('row >= col')
+          d1row = qrow + qcol 
           d1col = 0
-          d1row = N - 1 - (qcol - qrow)
-          inc = 1
+        } else {
+          console.log('row < col')
+          d1col = qcol - (N - 1 - qrow) 
+          d1row = N - 1
         }
 
-        while (d1row >= 0 && d1row < N && d1col >= 0 && d1col < N) {
-          // console.log('diag on: ', d1row, d1col)
+        while (d1row >= 0 && d1col >= 0) {
+          console.log('diag on: ', d1row, d1col)
           if (board[d1row][d1col] === 0) board[d1row][d1col] = 1
-          d1row -= inc 
-          d1col += inc 
+          d1row -- 
+          d1col ++
         }
 
       }
@@ -156,8 +154,8 @@ function queensAES(N) {
 }
 
 // ============ run area ================ 
-console.log(queensAES(5))
-
+// console.log(queensAES(5))
+testFunctions(5)
 
 // ============ test area ================
 // const newBoard = createNxNBoard(5) 
@@ -185,3 +183,18 @@ console.log(queensAES(5))
 // console.log(newBoard)
 
 // console.log('Board is fully attacked? ', queensAndAttacked(newBoard))
+
+function testFunctions(N) {
+  
+  const newBoard = createNxNBoard(N)
+  
+  for (let i = 0; i < N; i++) {
+    for (let j = 0; j < N; j++) {
+      const currBoard = copyBoard(newBoard)
+      placeQueen(currBoard, i, j)
+      executeAttacks(currBoard)
+      console.log(currBoard)
+      console.log(queensAndAttacked(currBoard))
+    }
+  }
+}
