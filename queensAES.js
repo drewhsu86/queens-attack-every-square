@@ -182,7 +182,7 @@ function queensAES(N) {
 }
 
 // ============ run area ================ 
-console.log(queensAES(7))
+// console.log(queensAES(7)) 
 // testFunctions(5)
 
 // ============ test area ================
