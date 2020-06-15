@@ -114,8 +114,27 @@ function testFunctions(N) {
   }
 }
 
+function queenWithinOne(board, row, col) {
+  // return true if there is a queen within one space 
+  // in any straight or diagonal direction 
+  const N = board.length 
+  const startRow = Math.max(0, row - 1)
+  const startCol = Math.max(0, col - 1)
+  const endRow = Math.min(row + 1, N - 1)
+  const endCol = Math.min(col + 1, N - 1)
+  
+  for (let i = startRow; i <= endRow; i++) {
+    for (let j = startCol; j <= endCol; j++) {
+      if (board[i][j] === 9) return true 
+    }
+  }
+
+  return false 
+}
+
 function queensAES(N) {
   const board = createNxNBoard(N) 
+  const startTime = new Date()
 
   // dfs over every square 
   // but we know we don't need more than N  
@@ -166,11 +185,16 @@ function queensAES(N) {
       for (let i = 0; i < N; i++) {
         for (let j = 0; j < N; j++) {
           // for each space, if 0 or 1 then its a candidate spot 
-          if (currBoard[i][j] === 0 || currBoard[i][j] === 1) {
-            // make a new board then push it 
-            const newBoard = copyBoard(currBoard)
-            newBoard[i][j] = 9 
-            stack.push(newBoard)
+          if (currBoard[i][j] === 0) {
+            const noCloseQueens = !queenWithinOne(currBoard, i, j)
+            // console.log(currBoard)
+            // console.log('No close queens within: ', i, j, noCloseQueens)
+            if (noCloseQueens) {
+              // make a new board then push it 
+              const newBoard = copyBoard(currBoard)
+              newBoard[i][j] = 9
+              stack.push(newBoard)
+            }
           }
         }
       }
@@ -178,11 +202,16 @@ function queensAES(N) {
   } // end of while loop 
 
   console.log('===== Min Board Final =====')
+  
+  const endTime = new Date()
+  console.log('started: ', startTime)
+  console.log('ended: ', endTime)
+
   return minSol 
 }
 
 // ============ run area ================ 
-// console.log(queensAES(7)) 
+console.log(queensAES(8)) 
 // testFunctions(5)
 
 // ============ test area ================
