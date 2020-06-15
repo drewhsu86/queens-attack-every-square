@@ -122,10 +122,21 @@ function queensAES(N) {
   // dfs uses a stack 
   let stack = [board]
   let minSol = null 
+  let counter = 0
+  let power = 1 
+  let maxNum = N
   
   while (stack.length > 0) {
     // all squares that are 0 or 1 are candidates for new queens 
+    
     const currBoard = stack.pop()
+
+    counter++
+    if (counter === power) {
+      console.log('stack: ', power)
+      power *= 10 
+    }
+    
     // console.log('===== Current Board =====')
     // console.log(currBoard)
     executeAttacks(currBoard) 
@@ -133,6 +144,7 @@ function queensAES(N) {
     const [allAttacked, numQueens] = queensAndAttacked(currBoard)
     
     if (allAttacked === true) {
+      if (numQueens < maxNum) maxNum = numQueens
       // if all attacked, check against optimal solution 
       if (minSol === null) {
         minSol = currBoard 
@@ -147,7 +159,7 @@ function queensAES(N) {
         }
       }
 
-    } else if (numQueens < N) {
+    } else if (numQueens < maxNum) {
       // find empty spaces to use if:
       // allAttacked is false and 
       // numQueens is less than N 
@@ -170,7 +182,7 @@ function queensAES(N) {
 }
 
 // ============ run area ================ 
-console.log(queensAES(5))
+console.log(queensAES(7))
 // testFunctions(5)
 
 // ============ test area ================
