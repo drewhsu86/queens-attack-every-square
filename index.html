@@ -11,13 +11,21 @@
 <body>
 
   <form id="setN">
-    <input type="number" id="setNinput">
+    <p>
+      On an N x N chessboard, how do we place the mininum number of queens to attack every square on the board? (Queens attack in a straight line and diagonally.)
+    </p>
+    <ul>
+      <li>I solved it using depth first search (DFS) but it is very slow.</li>
+      <li>I tried to trim my DFS tree by not continuing a search if the number of queens is already higher than the amount in the current optimal solution stored.</li>
+      <li>Currently N = 7 takes a minute, and N = 8 takes a long time (10s of minutes). Without trimming, N = 5 takes a minute and N = 6 takes a long time.</li>
+    </ul>
+    <strong>N = </strong><input type="number" id="setNinput">
     <button>Submit</button>
   </form>
 
   <div id="chessboard">
 
   </div>
-  
+
 </body>
 </html>
