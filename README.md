@@ -1,5 +1,7 @@
 # queens-attack-every-square
 
+[Deployed on Surge](drewhsu86-queensaes.surge.sh)
+
 ## Algo Question
 
 Given an NxN chessboard, place the minimum number of queens necessary to attack every square on the board. Reminder that queens attack in straight and diagonal lines. I coded the problem in Javascript and implemented a browser view that uses the functions I wrote.
