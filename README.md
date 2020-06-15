@@ -1,6 +1,6 @@
 # queens-attack-every-square
 
-[Deployed on Surge](drewhsu86-queensaes.surge.sh)
+[Deployed on Surge](https://drewhsu86-queensaes.surge.sh)
 
 ## Algo Question
 
