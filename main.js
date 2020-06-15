@@ -7,7 +7,7 @@ const setNinput = document.querySelector('#setNinput')
 // set some variables 
 setNinput.value = 1 
 let board = null 
-const maxNum = 9
+const maxNum = 8
 
 
 setNinput.addEventListener('change', (e) => {
@@ -30,11 +30,11 @@ setNinput.addEventListener('change', (e) => {
 setN.addEventListener('submit', (e) => {
   e.preventDefault()
 
-  chessboard.innerHTML = ''
+  chessboard.innerHTML = 'Loading...'
 
   finalBoard = queensAES(parseInt(setNinput.value)) 
 
-  console.log(finalBoard)
+  chessboard.innerHTML = ''
   populateChessboard(finalBoard)
 })
 
